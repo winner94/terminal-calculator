@@ -15,6 +15,36 @@ def divide(a, b):
 def power(a, b):
     return pow(a,b)
 
+def get_number(prompt):
+    try:
+        return float(input(prompt))
+    except ValueError:
+        print("Error: enter a number")
+        return None
+
+def get_operation():
+    op = input("Operation: ( + , - , * , / , ^)")
+    if op not in ["+", "-", "*", "/", "^"]:
+        print("Error: unknown operation")
+        return None
+    return op
+
+def calculate(a, op, b):
+    return operation_dict[op](a, b) 
+
+operation_dict = {
+    "+" : add,
+    "-" : subtract,
+    "*" : multiply,
+    "/" : divide,
+    "^" : power
+}
+
+a = get_number("a =")
+o = get_operation()
+b = get_number("b =")
+print(calculate(a, o, b))
+
 
 # tests
 print(add(2, 3))        # 5
