@@ -16,18 +16,18 @@ def power(a, b):
     return pow(a,b)
 
 def get_number(prompt):
-    try:
-        return float(input(prompt))
-    except ValueError:
-        print("Error: enter a number")
-        return None
+    while True:
+        try:
+            return float(input(prompt))
+        except ValueError:
+            print("Error: enter a number")
 
 def get_operation():
-    op = input("Operation: ( + , - , * , / , ^)")
-    if op not in ["+", "-", "*", "/", "^"]:
-        print("Error: unknown operation")
-        return None
-    return op
+    while True:
+        op = input("Operation: ( + , - , * , / , ^, q to quit)")
+        if op in ["+", "-", "*", "/", "^", "q"]:
+            return op
+        print("Error, try again.")
 
 def calculate(a, op, b):
     return operation_dict[op](a, b) 
@@ -40,15 +40,22 @@ operation_dict = {
     "^" : power
 }
 
-a = get_number("a =")
-o = get_operation()
-b = get_number("b =")
-print(calculate(a, o, b))
+def main():
+    print("--- CALCULATOR ---")
+    while True:
+        a = get_number("a =")
+        o = get_operation()
+        if (o == "q"):
+            break
+        b = get_number("b =")
+        print(f"{a} {o} {b} = {calculate(a, o, b)}")
 
 
-# tests
-print(add(2, 3))        # 5
-print(subtract(3, 2))   # 1
-print(multiply(3, 4))   # 12  
-print(divide(16, 2))    # 8
-print(power(3, 3))      # 27
+main()
+# 
+# main()tests
+# print(add(2, 3))        # 5
+# print(subtract(3, 2))   # 1
+# print(multiply(3, 4))   # 12  
+# print(divide(16, 2))    # 8
+# print(power(3, 3))      # 27
