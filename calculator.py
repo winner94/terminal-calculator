@@ -41,6 +41,7 @@ operation_dict = {
 }
 
 def main():
+    history = []
     print("--- CALCULATOR ---")
     while True:
         a = get_number("a =")
@@ -48,8 +49,12 @@ def main():
         if o == "q":
             break
         b = get_number("b =")
-        print(f"{a} {o} {b} = {calculate(a, o, b)}")
-
+        result = f"Result: {a} {o} {b} = {calculate(a, o, b)}"
+        history.append(result)
+        print(result)
+        print("\n History:")
+        for i, v in enumerate(history[-5:]):
+            print(f"{i+1}: {v}")
 
 main()
 # 
