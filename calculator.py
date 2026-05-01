@@ -45,7 +45,7 @@ def main():
     while True:
         a = get_number("a =")
         o = get_operation()
-        if (o == "q"):
+        if o == "q":
             break
         b = get_number("b =")
         print(f"{a} {o} {b} = {calculate(a, o, b)}")
